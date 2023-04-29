@@ -46,6 +46,22 @@ def QPixmap2cv(qtpixmap):
 
     return result
 
+def FFT2(img):
+    # 傅里叶变换
+    f = np.fft.fft2(img)
+    fshift = np.fft.fftshift(f)
+    res = np.log(np.abs(fshift))
+
+    # plt.plot(res)
+    # plt.savefig('img.jpg')
+    # result = cv2.imread('img.jpg', 1)
+    plt.imshow(res, 'gray')
+    plt.axis('off')
+    plt.savefig('Img.png')
+    # os.remove('img.jpg')
+
+    # return result
+
 
 class MyWindow(QMainWindow):
     def __init__(self, Ui_MainWindow):
@@ -94,6 +110,8 @@ class MyWindow(QMainWindow):
             self.ui.Label_T.setText(str(cv2.imread(self.picpath).shape[2]))
             self.ui.Label_Type.setText(str(cv2.imread(self.picpath).dtype))
             self.ui.PicBefore.setScaledContents(True)
+            FFT2(cv2.imread(self.picpath, 0))
+            # cv2.imshow(FFT2(cv2.imread(self.picpath, 0)))
 
     def Grayscale(self):
         if self.picpath == ' ':
