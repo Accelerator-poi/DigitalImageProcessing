@@ -54,6 +54,8 @@ class MyWindow(QMainWindow):
         app = QApplication(sys.argv)
         MainWindow = QMainWindow()
         self.ui.setupUi(MainWindow)
+        self.picpath = ' '
+        self.openfile_name = ' '
 
         self.ui.ImportBtn.clicked.connect(lambda: self.Import())
         self.ui.GrayscaleBtn.clicked.connect(lambda: self.Grayscale())
@@ -84,7 +86,7 @@ class MyWindow(QMainWindow):
 
     def Import(self):
         self.openfile_name = QFileDialog.getOpenFileName(self, '选择文件', '', "Image Files (*.png *.jpg *.bmp)")[0]
-        if self.openfile_name != "":
+        if self.openfile_name != " ":
             self.ui.PicBefore.setPixmap(QPixmap(self.openfile_name))
             self.picpath = self.openfile_name
             self.ui.Label_H.setText(str(cv2.imread(self.picpath).shape[0]))
@@ -94,6 +96,10 @@ class MyWindow(QMainWindow):
             self.ui.PicBefore.setScaledContents(True)
 
     def Grayscale(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -101,6 +107,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Binarization(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, self.PicAfter = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
@@ -109,6 +119,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Geometry(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -116,6 +130,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(False)
 
     def Histogram(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.PicAfter = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
@@ -126,6 +144,10 @@ class MyWindow(QMainWindow):
         os.remove('img.jpg')
 
     def Equalize(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.PicAfter = cv2.equalizeHist(self.PicAfter)
@@ -143,6 +165,10 @@ class MyWindow(QMainWindow):
         # self.ui.PicAfter.setScaledContents(True)
 
     def Mean(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.blur(img, (3, 5))
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -150,6 +176,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Box(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.boxFilter(img, -1, (3, 5))
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -157,6 +187,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Vague(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.GaussianBlur(img, (5, 5), 0)
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -164,6 +198,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Median(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.medianBlur(img, 5)
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -171,6 +209,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Roberts(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
@@ -186,6 +228,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Prewitt(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
@@ -201,6 +247,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Sobel(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
@@ -214,6 +264,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Lowpass(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         # self.PicAfter = cv2.cvtColor(self.PicAfter, cv2.COLOR_GRAY2RGB)
@@ -236,6 +290,10 @@ class MyWindow(QMainWindow):
         os.remove('img.jpg')
 
     def Highpass(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         img_dft = np.fft.fft2(self.PicAfter)
@@ -256,6 +314,10 @@ class MyWindow(QMainWindow):
         os.remove('img.jpg')
 
     def Corrosion(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
@@ -267,6 +329,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Expansion(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
@@ -278,6 +344,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Open(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
@@ -289,6 +359,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Close(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
@@ -300,6 +374,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def LOG(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur = cv2.GaussianBlur(img_gray, (3, 3), 1, 1)
@@ -310,6 +388,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Scharr(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         Scharr_result = cv2.Scharr(img_gray, cv2.CV_16S, dx=1, dy=0)
@@ -319,6 +401,10 @@ class MyWindow(QMainWindow):
         self.ui.PicAfter.setScaledContents(True)
 
     def Canny(self):
+        if self.picpath == ' ':
+            QMessageBox.critical(self, '操作失败', '请先导入图片',
+                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
+            return
         img = cv2.imread(self.picpath)
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur_canny = cv2.GaussianBlur(img_gray, (7, 7), 1, 1)
