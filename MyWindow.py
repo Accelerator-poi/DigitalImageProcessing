@@ -57,7 +57,8 @@ def FFT2(img):
     # result = cv2.imread('img.jpg', 1)
     plt.imshow(res, 'gray')
     plt.axis('off')
-    plt.savefig('Img.png')
+    plt.savefig('Img.png', bbox_inches='tight', pad_inches=0.0)
+    plt.close()
     result = cv2.imread('Img.png', 0)
     os.remove('Img.png')
 
@@ -102,6 +103,7 @@ class MyWindow(QMainWindow):
         sys.exit(app.exec_())
 
     def Import(self):
+        # 导入图片
         self.openfile_name = QFileDialog.getOpenFileName(self, '选择文件', '', "Image Files (*.png *.jpg *.bmp)")[0]
         if self.openfile_name != " ":
             self.ui.PicBefore.setPixmap(QPixmap(self.openfile_name))
@@ -117,6 +119,7 @@ class MyWindow(QMainWindow):
             self.ui.FFTBefore.setScaledContents(True)
 
     def Grayscale(self):
+        # 灰度处理
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -133,6 +136,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Binarization(self):
+        # 二值化处理
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -150,6 +154,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Geometry(self):
+        # 几何变换
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -166,6 +171,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Histogram(self):
+        # 灰度直方图
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -177,14 +183,15 @@ class MyWindow(QMainWindow):
         plt.savefig('img.jpg')
         self.ui.PicAfter.setPixmap(QPixmap('img.jpg'))
         self.ui.PicAfter.setScaledContents(True)
-        self.fftafter = cv2.imread('img.jpg')
+        # self.fftafter = cv2.imread('img.jpg')
         os.remove('img.jpg')
-        self.fftafter = FFT2(self.fftafter)
-        self.fftafter = cvImgtoQtImg(self.fftafter)
-        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
-        self.ui.FFTAfter.setScaledContents(True)
+        # self.fftafter = FFT2(self.fftafter)
+        # self.fftafter = cvImgtoQtImg(self.fftafter)
+        # self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        # self.ui.FFTAfter.setScaledContents(True)
 
     def Equalize(self):
+        # 均衡化
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -211,6 +218,7 @@ class MyWindow(QMainWindow):
         # self.ui.PicAfter.setScaledContents(True)
 
     def Mean(self):
+        # 均值滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -227,6 +235,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Box(self):
+        # 方框滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -243,6 +252,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Vague(self):
+        # 高斯模糊滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -259,6 +269,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Median(self):
+        # 中值滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -275,6 +286,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Roberts(self):
+        # Roberts算子
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -299,6 +311,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Prewitt(self):
+        # Prewitt算子
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -323,6 +336,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Sobel(self):
+        # Sobel算子
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -345,6 +359,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Lowpass(self):
+        # 低通滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -376,6 +391,7 @@ class MyWindow(QMainWindow):
         os.remove('img.jpg')
 
     def Highpass(self):
+        # 高通滤波
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -405,6 +421,7 @@ class MyWindow(QMainWindow):
         os.remove('img.jpg')
 
     def Corrosion(self):
+        # 腐蚀运算
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -425,6 +442,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Expansion(self):
+        # 膨胀运算
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -445,6 +463,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Open(self):
+        # 开运算
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -465,6 +484,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Close(self):
+        # 闭运算
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -485,6 +505,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def LOG(self):
+        # LOG检测
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -504,6 +525,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Scharr(self):
+        # Scharr算子
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -522,6 +544,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Canny(self):
+        # Canny算子
         if self.picpath == ' ':
             QMessageBox.critical(self, '操作失败', '请先导入图片',
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
@@ -540,6 +563,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTAfter.setScaledContents(True)
 
     def Save(self):
+        # 保存
         self.SaveName = QFileDialog.getSaveFileName(self, '选择文件', '', "Image Files (*.png *.jpg *.bmp)")[0]
 
         if self.SaveName != '':

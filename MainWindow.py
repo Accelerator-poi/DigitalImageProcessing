@@ -417,7 +417,7 @@ class Ui_MainWindow(object):
         self.line_19.setObjectName("line_19")
         self.horizontalLayout_16.addWidget(self.line_19)
         self.FFTAfter = QtWidgets.QLabel(self.centralwidget)
-        self.FFTAfter.setGeometry(QtCore.QRect(740, 440, 471, 331))
+        self.FFTAfter.setGeometry(QtCore.QRect(740, 450, 471, 331))
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
