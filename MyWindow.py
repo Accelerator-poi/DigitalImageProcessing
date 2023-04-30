@@ -58,9 +58,10 @@ def FFT2(img):
     plt.imshow(res, 'gray')
     plt.axis('off')
     plt.savefig('Img.png')
-    # os.remove('img.jpg')
+    result = cv2.imread('Img.png', 0)
+    os.remove('Img.png')
 
-    # return result
+    return result
 
 
 class MyWindow(QMainWindow):
@@ -111,7 +112,7 @@ class MyWindow(QMainWindow):
             self.ui.Label_Type.setText(str(cv2.imread(self.picpath).dtype))
             self.ui.PicBefore.setScaledContents(True)
             FFT2(cv2.imread(self.picpath, 0))
-            # cv2.imshow(FFT2(cv2.imread(self.picpath, 0)))
+            cv2.imshow(' ', FFT2(cv2.imread(self.picpath, 0)))
 
     def Grayscale(self):
         if self.picpath == ' ':
