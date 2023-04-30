@@ -111,8 +111,10 @@ class MyWindow(QMainWindow):
             self.ui.Label_T.setText(str(cv2.imread(self.picpath).shape[2]))
             self.ui.Label_Type.setText(str(cv2.imread(self.picpath).dtype))
             self.ui.PicBefore.setScaledContents(True)
-            FFT2(cv2.imread(self.picpath, 0))
-            cv2.imshow(' ', FFT2(cv2.imread(self.picpath, 0)))
+            self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+            self.fftbefore = cvImgtoQtImg(self.fftbefore)
+            self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+            self.ui.FFTBefore.setScaledContents(True)
 
     def Grayscale(self):
         if self.picpath == ' ':
@@ -121,9 +123,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Binarization(self):
         if self.picpath == ' ':
@@ -133,9 +140,14 @@ class MyWindow(QMainWindow):
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, self.PicAfter = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Geometry(self):
         if self.picpath == ' ':
@@ -144,9 +156,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(False)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Histogram(self):
         if self.picpath == ' ':
@@ -158,9 +175,14 @@ class MyWindow(QMainWindow):
         self.PicAfter = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
         plt.plot(self.PicAfter)
         plt.savefig('img.jpg')
-        self.ui.PicAfter.setPixmap(QPixmap('img'))
+        self.ui.PicAfter.setPixmap(QPixmap('img.jpg'))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = cv2.imread('img.jpg')
         os.remove('img.jpg')
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Equalize(self):
         if self.picpath == ' ':
@@ -170,9 +192,14 @@ class MyWindow(QMainWindow):
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.PicAfter = cv2.equalizeHist(self.PicAfter)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
         # 做完上面部分取消注释，做下面部分
         # img = cv2.imread(self.picpath)
         # self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -190,9 +217,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.blur(img, (3, 5))
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Box(self):
         if self.picpath == ' ':
@@ -201,9 +233,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.boxFilter(img, -1, (3, 5))
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Vague(self):
         if self.picpath == ' ':
@@ -212,9 +249,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.GaussianBlur(img, (5, 5), 0)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Median(self):
         if self.picpath == ' ':
@@ -223,9 +265,14 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.medianBlur(img, 5)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Roberts(self):
         if self.picpath == ' ':
@@ -242,9 +289,14 @@ class MyWindow(QMainWindow):
         absX_Robert = cv2.convertScaleAbs(x_Robert)
         absY_Robert = cv2.convertScaleAbs(y_Robert)
         self.PicAfter = cv2.addWeighted(absX_Robert, 0.5, absY_Robert, 0.5, 0)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Prewitt(self):
         if self.picpath == ' ':
@@ -261,9 +313,14 @@ class MyWindow(QMainWindow):
         absX_Prewitt = cv2.convertScaleAbs(x_Prewitt)
         absY_Prewitt = cv2.convertScaleAbs(y_Prewitt)
         self.PicAfter = cv2.addWeighted(absX_Prewitt, 0.5, absY_Prewitt, 0.5, 0)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Sobel(self):
         if self.picpath == ' ':
@@ -278,9 +335,14 @@ class MyWindow(QMainWindow):
         absX_Sobel = cv2.convertScaleAbs(x_Sobel)
         absY_Sobel = cv2.convertScaleAbs(y_Sobel)
         self.PicAfter = cv2.addWeighted(absX_Sobel, 0.5, absY_Sobel, 0.5, 0)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Lowpass(self):
         if self.picpath == ' ':
@@ -306,6 +368,11 @@ class MyWindow(QMainWindow):
         self.PicAfter = QPixmap('img.jpg')
         self.ui.PicAfter.setPixmap(self.PicAfter)
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = cv2.imread('img.jpg')
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
         os.remove('img.jpg')
 
     def Highpass(self):
@@ -330,6 +397,11 @@ class MyWindow(QMainWindow):
         self.PicAfter = QPixmap('img.jpg')
         self.ui.PicAfter.setPixmap(self.PicAfter)
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = cv2.imread('img.jpg')
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
         os.remove('img.jpg')
 
     def Corrosion(self):
@@ -343,9 +415,14 @@ class MyWindow(QMainWindow):
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
         kernel = np.ones((3, 3), np.uint8)
         self.PicAfter = cv2.erode(img_binary, kernel)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Expansion(self):
         if self.picpath == ' ':
@@ -358,9 +435,14 @@ class MyWindow(QMainWindow):
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
         kernel = np.ones((3, 3), np.uint8)
         self.PicAfter = cv2.dilate(img_binary, kernel, iterations=1)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Open(self):
         if self.picpath == ' ':
@@ -373,9 +455,14 @@ class MyWindow(QMainWindow):
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
         kernel = np.ones((3, 3), np.uint8)
         self.PicAfter = cv2.morphologyEx(img_binary, cv2.MORPH_OPEN, kernel)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Close(self):
         if self.picpath == ' ':
@@ -388,9 +475,14 @@ class MyWindow(QMainWindow):
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
         kernel = np.ones((3, 3), np.uint8)
         self.PicAfter = cv2.morphologyEx(img_binary, cv2.MORPH_CLOSE, kernel)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def LOG(self):
         if self.picpath == ' ':
@@ -402,9 +494,14 @@ class MyWindow(QMainWindow):
         img_blur = cv2.GaussianBlur(img_gray, (3, 3), 1, 1)
         LOG_result = cv2.Laplacian(img_blur, cv2.CV_16S, ksize=1)
         self.PicAfter = cv2.convertScaleAbs(LOG_result)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Scharr(self):
         if self.picpath == ' ':
@@ -415,9 +512,14 @@ class MyWindow(QMainWindow):
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         Scharr_result = cv2.Scharr(img_gray, cv2.CV_16S, dx=1, dy=0)
         self.PicAfter = cv2.convertScaleAbs(Scharr_result)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Canny(self):
         if self.picpath == ' ':
@@ -428,9 +530,14 @@ class MyWindow(QMainWindow):
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur_canny = cv2.GaussianBlur(img_gray, (7, 7), 1, 1)
         self.PicAfter = cv2.Canny(img_blur_canny, 50, 150)
+        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
+        self.fftafter = FFT2(self.fftafter)
+        self.fftafter = cvImgtoQtImg(self.fftafter)
+        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.ui.FFTAfter.setScaledContents(True)
 
     def Save(self):
         self.SaveName = QFileDialog.getSaveFileName(self, '选择文件', '', "Image Files (*.png *.jpg *.bmp)")[0]
