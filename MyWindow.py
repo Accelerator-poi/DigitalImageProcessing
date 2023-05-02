@@ -181,14 +181,11 @@ class MyWindow(QMainWindow):
         self.PicAfter = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
         plt.plot(self.PicAfter)
         plt.savefig('img.jpg')
+        plt.close()
         self.ui.PicAfter.setPixmap(QPixmap('img.jpg'))
         self.ui.PicAfter.setScaledContents(True)
-        # self.fftafter = cv2.imread('img.jpg')
         os.remove('img.jpg')
-        # self.fftafter = FFT2(self.fftafter)
-        # self.fftafter = cvImgtoQtImg(self.fftafter)
-        # self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
-        # self.ui.FFTAfter.setScaledContents(True)
+
 
     def Equalize(self):
         # 均衡化
@@ -198,24 +195,27 @@ class MyWindow(QMainWindow):
             return
         img = cv2.imread(self.picpath)
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        PicBefore = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
+        plt.plot(PicBefore)
+        plt.savefig('img.jpg')
+        plt.close()
+        self.ui.FFTBefore.setPixmap(QPixmap('img.jpg'))
+        self.ui.FFTBefore.setScaledContents(True)
+        os.remove('img.jpg')
+
         self.PicAfter = cv2.equalizeHist(self.PicAfter)
-        self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
         self.ui.PicAfter.setScaledContents(True)
-        self.fftafter = FFT2(self.fftafter)
-        self.fftafter = cvImgtoQtImg(self.fftafter)
-        self.ui.FFTAfter.setPixmap(QPixmap(self.fftafter))
+        self.fftafter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        self.fftafter = cv2.equalizeHist(self.fftafter)
+        self.fftafter = cv2.calcHist([self.fftafter], [0], None, [256], [0, 255])
+        plt.plot(self.fftafter)
+        plt.savefig('img.jpg')
+        plt.close()
+        self.ui.FFTAfter.setPixmap(QPixmap('img.jpg'))
+        os.remove('img.jpg')
         self.ui.FFTAfter.setScaledContents(True)
-        # 做完上面部分取消注释，做下面部分
-        # img = cv2.imread(self.picpath)
-        # self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        # self.PicAfter = cv2.equalizeHist(self.PicAfter)
-        # self.PicAfter = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
-        # plt.plot(self.PicAfter)
-        # plt.savefig('img')
-        # self.ui.PicAfter.setPixmap(QPixmap('img'))
-        # self.ui.PicAfter.setScaledContents(True)
 
     def Mean(self):
         # 均值滤波
