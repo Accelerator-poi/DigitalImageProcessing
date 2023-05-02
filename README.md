@@ -1,0 +1,2 @@
+# DigitalImageProcessing
+数字图像处理大作业，用来对图像进行简单处理，并在GUI界面上进行显示
