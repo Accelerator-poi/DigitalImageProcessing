@@ -125,6 +125,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -142,6 +148,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, self.PicAfter = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
         self.fftafter = self.PicAfter
@@ -160,6 +172,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.resize(img, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -177,6 +195,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         self.PicAfter = cv2.calcHist([self.PicAfter], [0], None, [256], [0, 255])
         plt.plot(self.PicAfter)
@@ -224,6 +248,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.blur(img, (3, 5))
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -241,6 +271,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.boxFilter(img, -1, (3, 5))
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -258,6 +294,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.GaussianBlur(img, (5, 5), 0)
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -275,6 +317,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.medianBlur(img, 5)
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
@@ -292,6 +340,11 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
         kernelx_Robert = np.array([[-1, 0], [0, 1]], dtype=int)
@@ -317,6 +370,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
         kernelx_Prewitt = np.array([[1, 1, 1], [0, 0, 0], [-1, -1, -1]], dtype=int)
@@ -342,6 +401,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 127, 255, cv2.THRESH_BINARY)
         x_Sobel = cv2.Sobel(img_binary, cv2.CV_16S, 1, 0)
@@ -365,6 +430,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         # self.PicAfter = cv2.cvtColor(self.PicAfter, cv2.COLOR_GRAY2RGB)
         img_dft = np.fft.fft2(self.PicAfter)
@@ -397,6 +468,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         img_dft = np.fft.fft2(self.PicAfter)
         dft_shift = np.fft.fftshift(img_dft)
@@ -427,6 +504,11 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
@@ -448,6 +530,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
@@ -469,6 +557,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
@@ -490,6 +584,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         ret, img_binary = cv2.threshold(self.PicAfter, 55, 255, cv2.THRESH_BINARY)
         img_binary = np.ones(img_binary.shape, np.uint8) * 255 - img_binary
@@ -511,6 +611,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur = cv2.GaussianBlur(img_gray, (3, 3), 1, 1)
         LOG_result = cv2.Laplacian(img_blur, cv2.CV_16S, ksize=1)
@@ -531,6 +637,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         Scharr_result = cv2.Scharr(img_gray, cv2.CV_16S, dx=1, dy=0)
         self.PicAfter = cv2.convertScaleAbs(Scharr_result)
@@ -550,6 +662,12 @@ class MyWindow(QMainWindow):
                                  QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
             return
         img = cv2.imread(self.picpath)
+
+        self.fftbefore = FFT2(cv2.imread(self.picpath, 0))
+        self.fftbefore = cvImgtoQtImg(self.fftbefore)
+        self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
+        self.ui.FFTBefore.setScaledContents(True)
+        
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur_canny = cv2.GaussianBlur(img_gray, (7, 7), 1, 1)
         self.PicAfter = cv2.Canny(img_blur_canny, 50, 150)
