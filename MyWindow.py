@@ -52,9 +52,6 @@ def FFT2(img):
     fshift = np.fft.fftshift(f)
     res = np.log(np.abs(fshift))
 
-    # plt.plot(res)
-    # plt.savefig('img.jpg')
-    # result = cv2.imread('img.jpg', 1)
     plt.imshow(res, 'gray')
     plt.axis('off')
     plt.savefig('Img.png', bbox_inches='tight', pad_inches=0.0)
@@ -667,7 +664,7 @@ class MyWindow(QMainWindow):
         self.fftbefore = cvImgtoQtImg(self.fftbefore)
         self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
         self.ui.FFTBefore.setScaledContents(True)
-        
+
         img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_blur_canny = cv2.GaussianBlur(img_gray, (7, 7), 1, 1)
         self.PicAfter = cv2.Canny(img_blur_canny, 50, 150)
