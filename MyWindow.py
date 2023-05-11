@@ -51,8 +51,11 @@ def FFT2(img):
     f = np.fft.fft2(img)
     fshift = np.fft.fftshift(f)
     res = np.log(np.abs(fshift))
+    res = res - res.min()
+    res = res / res.max() * 255
+    res = np.array(res, np.uint8)
 
-    plt.imshow(res, 'gray')
+    plt.imshow(res, cmap='gray')
     plt.axis('off')
     plt.savefig('Img.png', bbox_inches='tight', pad_inches=0.0)
     plt.close()
@@ -434,7 +437,6 @@ class MyWindow(QMainWindow):
         self.ui.FFTBefore.setScaledContents(True)
 
         self.PicAfter = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        # self.PicAfter = cv2.cvtColor(self.PicAfter, cv2.COLOR_GRAY2RGB)
         img_dft = np.fft.fft2(self.PicAfter)
         dft_shift_low = np.fft.fftshift(img_dft)
         h, w = dft_shift_low.shape[0:2]
