@@ -50,12 +50,13 @@ def FFT2(img):
     # 傅里叶变换
     f = np.fft.fft2(img)
     fshift = np.fft.fftshift(f)
-    res = np.log(np.abs(fshift))
+    res = 20 * np.log(np.abs(fshift))
     res = res - res.min()
     res = res / res.max() * 255
     res = np.array(res, np.uint8)
 
-    plt.imshow(res, cmap='gray')
+    # plt.imshow(res, cmap='gray')
+    plt.imshow(res)
     plt.axis('off')
     plt.savefig('Img.png', bbox_inches='tight', pad_inches=0.0)
     plt.close()
@@ -300,7 +301,7 @@ class MyWindow(QMainWindow):
         self.ui.FFTBefore.setPixmap(QPixmap(self.fftbefore))
         self.ui.FFTBefore.setScaledContents(True)
 
-        self.PicAfter = cv2.GaussianBlur(img, (5, 5), 0)
+        self.PicAfter = cv2.GaussianBlur(img, (3, 3), 0)
         self.fftafter = self.PicAfter
         self.PicAfter = cvImgtoQtImg(self.PicAfter)
         self.ui.PicAfter.setPixmap(QPixmap(self.PicAfter))
