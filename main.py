@@ -1,10 +1,11 @@
 from MyWindow import MyWindow
 from MainWindow import Ui_MainWindow
 from PyQt5.QtGui import QIcon
+from PyQt5 import QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
 
-
+QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling)
 app = QApplication(sys.argv)
 app.setStyleSheet(
     """
@@ -14,7 +15,7 @@ app.setStyleSheet(
          color: rgb(255,255,255);
          background-color: rgb(70, 84, 99);
          border:none;
-         border-radius:11px;
+         border-radius:9px;
          padding:2px 4px;
     }
     
